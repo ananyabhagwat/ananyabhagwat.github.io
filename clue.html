@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GQM Evaluation of Clue - Ananya Bhagwat Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body style="--accent: var(--c4)">
+
+<nav>
+  <a class="nav-name" href="index.html">Ananya Bhagwat</a>
+  <div class="nav-right">
+    <a class="nav-back" href="javascript:history.back()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </a>
+  </div>
+</nav>
+
+<div class="project-header">
+  <div class="project-header-left">
+    <p class="project-eyebrow">HCI for Health and Wellbeing / Individual</p>
+    <h1>A GQM Evaluation of Clue</h1>
+    <p class="lede">A systematic audit of whether Clue meets the goals its users actually bring to it, grounded in Lin et al.'s CHI 2024 research on functional design requirements for menstrual health data exploration.</p>
+  </div>
+  <div class="project-meta">
+    <div class="meta-item">
+      <span class="meta-label">Course</span>
+      <span class="meta-value">HCI for Health and Wellbeing</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Methods</span>
+      <span class="meta-value">GQM framework, Heuristic audit, Literature analysis</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Framework</span>
+      <span class="meta-value">Lin et al., CHI 2024</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-body">
+  <aside class="project-sidebar">
+    <ul class="sidebar-nav">
+      <li><a href="#g-overview">Overview</a></li>
+      <li><a href="#g-paper">The Paper</a></li>
+      <li><a href="#g-translation">From DRs to Criteria</a></li>
+      <li><a href="#g-findings">Findings</a></li>
+      <li><a href="#g-equity">Equity and Safety</a></li>
+      <li><a href="#g-goals">Design Goals</a></li>
+    </ul>
+  </aside>
+
+  <div class="project-content">
+
+    <div class="content-section" id="g-overview">
+      <p class="section-label">Overview</p>
+      <p>Menstrual tracking apps are mostly glorified calendars. They predict when your next period is and let you log symptoms. What they don't do is help you understand your data. This audit asked whether Clue, one of the most popular apps in the space, actually meets the needs of the people using it.</p>
+      <p>The audit was grounded in Lin et al. (CHI 2024), who studied 30 people to find out what they actually want from a tracking app. The short version: they want to anticipate upcoming symptoms, spot patterns across multiple signals, judge whether their cycle is normal for them, and learn from their data over time.</p>
+    </div>
+
+    <div class="content-section" id="g-paper">
+      <p class="section-label">The Paper</p>
+      <p>Lin et al. turned their findings into five design requirements. The problem is that design requirements from academic papers are broad by design. They are categories, not criteria. Making them auditable was the first task.</p>
+      <div class="image-slot" data-label="g-probes">
+        <input type="file" accept="image/*" onchange="handleImage(this)">
+        <div class="image-slot-inner">
+          <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <span class="image-slot-label">Lin et al. design probes - MenstrualMate and PeriodBubble</span>
+          <span class="image-slot-hint">Click to add image</span>
+        </div>
+        <img class="slot-preview" alt="">
+        <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+      </div>
+    </div>
+
+    <div class="content-section" id="g-translation">
+      <p class="section-label">From Design Requirements to Testable Criteria</p>
+      <p>I derived four design implications from the paper, each tied to a specific user goal, and from those produced nine binary requirements: concrete, verifiable statements about what the interface must do. Each requirement had a specific metric - a thing you could either find on screen or couldn't. This translation was the core of the work.</p>
+      <div class="image-slot" data-label="g-gqm-matrix">
+        <input type="file" accept="image/*" onchange="handleImage(this)">
+        <div class="image-slot-inner">
+          <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <span class="image-slot-label">GQM matrix - full requirements and metrics table</span>
+          <span class="image-slot-hint">Click to add image</span>
+        </div>
+        <img class="slot-preview" alt="">
+        <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+      </div>
+    </div>
+
+    <div class="content-section" id="g-findings">
+      <p class="section-label">Findings</p>
+      <p>Clue passes three of nine requirements. It lets you track multiple symptoms, shows you which symptoms tend to co-occur, and links to medical content when something looks atypical. It fails on prediction uncertainty (it gives you one date, no range), multi-signal comparison (you can't overlay two symptoms on a graph), and cross-cycle reflection (there is no way to compare this cycle to the last one in any meaningful view).</p>
+      <div class="image-row">
+        <div class="image-slot" data-label="g-clue-pass">
+          <input type="file" accept="image/*" onchange="handleImage(this)">
+          <div class="image-slot-inner">
+            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <span class="image-slot-label">Clue - passing metric M2.1</span>
+            <span class="image-slot-hint">Click to add image</span>
+          </div>
+          <img class="slot-preview" alt="">
+          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+        </div>
+        <div class="image-slot" data-label="g-clue-fail">
+          <input type="file" accept="image/*" onchange="handleImage(this)">
+          <div class="image-slot-inner">
+            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <span class="image-slot-label">Clue - failing metric M1.2</span>
+            <span class="image-slot-hint">Click to add image</span>
+          </div>
+          <img class="slot-preview" alt="">
+          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="g-equity">
+      <p class="section-label">Equity and Safety</p>
+      <p>The audit also looked at equity and safety, because the failures aren't just usability problems. The features that would actually support sensemaking are behind a subscription. Predictions are shown without any clinical disclaimer and can easily be read as diagnostic. And the app never tells you when its analysis is insufficient, which means users can build incorrect beliefs about their own bodies without knowing it.</p>
+    </div>
+
+    <div class="content-section" id="g-goals">
+      <p class="section-label">Design Goals</p>
+      <p>The audit concluded with three design goals: show predictions with visible uncertainty rather than false precision, support comparison across multiple signals with interpretive help, and enable cross-cycle reflection that doesn't rely on memory. These fed directly into the prototype project.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <p>Ananya Bhagwat - UCL Interaction Centre</p>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:ananya.bhagwat3720@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      ananya.bhagwat3720@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/ananyabhagwat" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/ananyabhagwat
+    </a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
