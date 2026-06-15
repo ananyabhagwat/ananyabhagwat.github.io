@@ -104,13 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   let W, H, nodes, animFrame;
 
-  // Colour from CSS var
-  const nodeColor = getComputedStyle(document.documentElement)
-    .getPropertyValue('--rule').trim() || '#E2DDD8';
+  // Rainbow palette — crisp solid colours, applied at low global opacity
+  const PALETTE = [
+    '#E05A6B', // rose
+    '#E8874A', // orange
+    '#D4B84A', // amber
+    '#6BAE5E', // green
+    '#4A9EBD', // sky
+    '#6B70C4', // indigo
+    '#A66BC4', // violet
+    '#C46B9E', // pink
+  ];
 
   function resize() {
     const wrap = canvas.parentElement;
-    // offsetHeight may be 0 if nothing has rendered yet — fall back to hero height
     const hero = wrap.querySelector('.hero');
     const h = wrap.offsetHeight || (hero ? hero.offsetHeight : 400);
     W = canvas.width  = wrap.offsetWidth  || window.innerWidth;
@@ -118,38 +125,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function makeNodes(n) {
-    return Array.from({ length: n }, () => ({
-      x:  Math.random() * W * 0.65,          // cluster toward left/top
-      y:  Math.random() * H * 0.80,
-      vx: (Math.random() - 0.5) * 0.28,
-      vy: (Math.random() - 0.5) * 0.28,
-      r:  Math.random() * 2 + 1.5,
-      // opacity that drifts gently
-      opacity: Math.random() * 0.5 + 0.15,
-      opacityDir: Math.random() > 0.5 ? 1 : -1,
-      opacitySpeed: Math.random() * 0.003 + 0.001,
+    return Array.from({ length: n }, (_, i) => ({
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r:  Math.random() * 4 + 3,          // bigger, visible circles
+      color: PALETTE[i % PALETTE.length], // each node gets a palette colour
     }));
   }
 
   function init() {
     resize();
-    nodes = makeNodes(52);
+    nodes = makeNodes(48);
   }
 
-  // How far from top-left corner before we start fading the whole graph out
+  // Fade out as distance from top-left increases
   function cornerFade(x, y) {
-    // distance from origin as fraction of diagonal
     const diag = Math.sqrt(W * W + H * H);
     const dist = Math.sqrt(x * x + y * y);
     const frac = dist / diag;
-    // full opacity up to 30% of diagonal, then fade to 0 by 75%
-    if (frac < 0.30) return 1;
-    if (frac > 0.75) return 0;
-    return 1 - (frac - 0.30) / (0.75 - 0.30);
+    if (frac < 0.25) return 1;
+    if (frac > 0.72) return 0;
+    return 1 - (frac - 0.25) / (0.72 - 0.25);
   }
 
-  const MAX_DIST = 160;
-  const BASE_ALPHA = 0.35; // max alpha for nodes/edges
+  const MAX_DIST  = 220;   // longer edges
+  const GLOBAL_OPACITY = 0.22; // overall watermark level — tweak this one number
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
@@ -158,49 +160,49 @@ document.addEventListener('DOMContentLoaded', () => {
     nodes.forEach(n => {
       n.x += n.vx;
       n.y += n.vy;
-
-      // soft bounce at edges
-      if (n.x < 0 || n.x > W * 0.7)  n.vx *= -1;
-      if (n.y < 0 || n.y > H)         n.vy *= -1;
-
-      // drift opacity
-      n.opacity += n.opacityDir * n.opacitySpeed;
-      if (n.opacity > 0.65 || n.opacity < 0.1) n.opacityDir *= -1;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
     });
 
-    // draw edges
+    // draw edges first (underneath nodes)
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i], b = nodes[j];
         const dx = a.x - b.x, dy = a.y - b.y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
+        const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist > MAX_DIST) continue;
 
-        const midX = (a.x + b.x) / 2;
-        const midY = (a.y + b.y) / 2;
-        const fade = cornerFade(midX, midY);
+        const fade = cornerFade((a.x + b.x) / 2, (a.y + b.y) / 2);
         if (fade === 0) continue;
 
+        // Edge opacity falls off with distance — closer = more visible
         const proximity = 1 - dist / MAX_DIST;
-        const alpha = BASE_ALPHA * proximity * fade;
+        const alpha = GLOBAL_OPACITY * proximity * fade * 0.6;
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = `rgba(130,120,110,${alpha})`;
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = `rgba(160,152,144,${alpha})`; // neutral warm grey
+        ctx.lineWidth = 1;
         ctx.stroke();
       }
     }
 
-    // draw nodes
+    // draw nodes on top — solid fill, crisp circles
     nodes.forEach(n => {
       const fade = cornerFade(n.x, n.y);
       if (fade === 0) return;
-      const alpha = BASE_ALPHA * n.opacity * fade * 1.8;
+
+      // Parse hex to rgb for alpha control
+      const hex = n.color.replace('#','');
+      const r = parseInt(hex.slice(0,2),16);
+      const g = parseInt(hex.slice(2,4),16);
+      const b = parseInt(hex.slice(4,6),16);
+      const alpha = GLOBAL_OPACITY * fade;
+
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(130,120,110,${alpha})`;
+      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
       ctx.fill();
     });
 
