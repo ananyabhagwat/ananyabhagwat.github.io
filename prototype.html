@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body style="--accent: var(--c5)">
-
 <nav>
   <a class="nav-name" href="index.html">Ananya Bhagwat</a>
   <div class="nav-right">
@@ -20,7 +19,6 @@
     </a>
   </div>
 </nav>
-
 <div class="project-header">
   <div class="project-header-left">
     <p class="project-eyebrow">HCI for Health and Wellbeing / Individual</p>
@@ -29,124 +27,131 @@
   </div>
   <div class="project-meta">
     <div class="meta-item">
-      <span class="meta-label">Course</span>
-      <span class="meta-value">HCI for Health and Wellbeing</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Methods</span>
-      <span class="meta-value">Figma prototyping, Think-aloud, Usability study</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Participants</span>
-      <span class="meta-value">5 (remote, think-aloud)</span>
-    </div>
+  <span class="meta-label">Course</span>
+  <span class="meta-value">HCI for Health and Wellbeing</span>
+</div>
+<div class="meta-item">
+  <span class="meta-label">Methods</span>
+  <span class="meta-value">Figma prototyping, Think-aloud, Usability study</span>
+</div>
+<div class="meta-item">
+  <span class="meta-label">Participants</span>
+  <span class="meta-value">5 (remote, think-aloud)</span>
+</div>
   </div>
 </div>
-
 <div class="project-body">
   <aside class="project-sidebar">
     <ul class="sidebar-nav">
       <li><a href="#pt-overview">Overview</a></li>
-      <li><a href="#pt-design">Design Decisions</a></li>
-      <li><a href="#pt-screens">Prototype Screens</a></li>
-      <li><a href="#pt-study">Usability Study</a></li>
-      <li><a href="#pt-findings">Findings</a></li>
-      <li><a href="#pt-next">Next Steps</a></li>
+<li><a href="#pt-design">Design Decisions</a></li>
+<li><a href="#pt-screens">Prototype Screens</a></li>
+<li><a href="#pt-study">Usability Study</a></li>
+<li><a href="#pt-findings">Findings</a></li>
+<li><a href="#pt-next">Next Steps</a></li>
     </ul>
   </aside>
-
   <div class="project-content">
-
     <div class="content-section" id="pt-overview">
-      <p class="section-label">Overview</p>
-      <p>This project picked up where the GQM audit left off. Three design goals, and a prototype built to test whether they actually work. The prototype has four views: Calendar, Symptoms, Analysis, and Information. Rather than redesigning Clue in full, it demonstrates how targeted interface decisions could better support menstrual health data exploration.</p>
-    </div>
-
-    <div class="content-section" id="pt-design">
-      <p class="section-label">Design Decisions</p>
-      <p>Two decisions shaped the prototype throughout. The first was representing uncertainty honestly: a range of plausible dates rather than a fixed prediction, and gradients rather than point markers for symptom forecasts. The second was embedding contextual events (travel, stress, sleep) across all views, so users can see whether a change in symptoms coincides with something that happened in their life without having to cross-reference manually.</p>
-      <p>The calendar shows period start predicted across a five to six day range, with symptom predictions across upcoming days. The symptoms view lets you compare up to four signals, flags significant changes, and has a toggle to compare against previous cycles. The analysis view summarises cycle characteristics, highlights deviations, and links to specific explanations when something looks different. The information view surfaces relevant articles contextually when a deviation is detected.</p>
-    </div>
-
-    <div class="content-section" id="pt-screens">
-      <p class="section-label">Prototype Screens</p>
-      <div class="image-row">
-        <div class="image-slot" data-label="pt-calendar">
-          <input type="file" accept="image/*" onchange="handleImage(this)">
-          <div class="image-slot-inner">
-            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <span class="image-slot-label">Calendar view - prediction windows</span>
-            <span class="image-slot-hint">Click to add image</span>
-          </div>
-          <img class="slot-preview" alt="">
-          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-        </div>
-        <div class="image-slot" data-label="pt-symptoms">
-          <input type="file" accept="image/*" onchange="handleImage(this)">
-          <div class="image-slot-inner">
-            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <span class="image-slot-label">Symptoms view - multivariate comparison</span>
-            <span class="image-slot-hint">Click to add image</span>
-          </div>
-          <img class="slot-preview" alt="">
-          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-        </div>
-      </div>
-      <div class="image-row">
-        <div class="image-slot" data-label="pt-analysis">
-          <input type="file" accept="image/*" onchange="handleImage(this)">
-          <div class="image-slot-inner">
-            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <span class="image-slot-label">Analysis view - deviation alert</span>
-            <span class="image-slot-hint">Click to add image</span>
-          </div>
-          <img class="slot-preview" alt="">
-          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-        </div>
-        <div class="image-slot" data-label="pt-information">
-          <input type="file" accept="image/*" onchange="handleImage(this)">
-          <div class="image-slot-inner">
-            <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <span class="image-slot-label">Information view - contextual articles</span>
-            <span class="image-slot-hint">Click to add image</span>
-          </div>
-          <img class="slot-preview" alt="">
-          <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-section" id="pt-study">
-      <p class="section-label">Usability Study</p>
-      <p>A usability study was conducted remotely with five participants, three with prior tracking experience and two without. Participants completed five predefined tasks using think-aloud protocol, rated helpfulness per task on a seven-point scale, and completed a short exit interview. No personal health data was collected; all participants used the same example dataset.</p>
-      <p>Four of five tasks had majority completion. Helpfulness ratings ranged between 6 and 7 across tasks.</p>
-      <div class="image-slot" data-label="pt-results-table">
-        <input type="file" accept="image/*" onchange="handleImage(this)">
-        <div class="image-slot-inner">
-          <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-          <span class="image-slot-label">Task completion and results table</span>
-          <span class="image-slot-hint">Click to add image</span>
-        </div>
-        <img class="slot-preview" alt="">
-        <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-      </div>
-    </div>
-
-    <div class="content-section" id="pt-findings">
-      <p class="section-label">Findings</p>
-      <p>Uncertainty windows worked. Every participant said they preferred a range to a fixed date and described it as more realistic.</p>
-      <p>The explanatory content didn't land. Not one participant opened the "how predictions work" link without being directed to it. The information was there; it just wasn't visible enough to find.</p>
-      <p>The biggest finding was that participants defaulted to the calendar for everything, including tasks better handled in the analysis or symptoms tabs. They had spent years using apps where the calendar was the whole product, and that mental model didn't shift just because other views existed.</p>
-    </div>
-
-    <div class="content-section" id="pt-next">
-      <p class="section-label">Next Steps</p>
-      <p>Make the prediction explanation prominent rather than tucked away. Use higher-contrast colours for deviation alerts. Make "learn more" links go to the specific explanation rather than a topic index. Replace cycle-day numbers with phase markers so cross-cycle comparison actually makes sense. Integrate contextual factors directly into deviation detection rather than leaving users to connect the dots themselves.</p>
-    </div>
-
+  <p class="section-label">Overview</p>
+  <p>This project picked up where the GQM audit left off. Three design goals, and a prototype built to test whether they actually work. The prototype has four views: Calendar, Symptoms, Analysis, and Information. Rather than redesigning Clue in full, it demonstrates how targeted interface decisions could better support menstrual health data exploration.</p>
+</div>
+<div class="content-section" id="pt-design">
+  <p class="section-label">Design Decisions</p>
+  <p>Two decisions shaped the prototype throughout. The first was representing uncertainty honestly: a range of plausible dates rather than a fixed prediction, and gradients rather than point markers for symptom forecasts.</p>
+<div class="image-slot wide" data-label="pt-calendar">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Calendar view - prediction windows</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+<p>The second was embedding contextual events (travel, stress, sleep) across all views, so users can see whether a change in symptoms coincides with something that happened in their life without having to cross-reference manually.</p>
+<p>The symptoms view lets you compare up to four signals, flags significant changes, and has a toggle to compare against previous cycles. The analysis view summarises cycle characteristics, highlights deviations, and links to specific explanations when something looks different. The information view surfaces relevant articles contextually when a deviation is detected.</p>
+</div>
+<div class="content-section" id="pt-screens">
+  <p class="section-label">Prototype Screens</p>
+  <div class="image-row">
+<div class="image-slot" data-label="pt-symptoms">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Symptoms view - multivariate comparison</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+<div class="image-slot" data-label="pt-analysis">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Analysis view - deviation alert</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+</div>
+<div class="image-row">
+<div class="image-slot" data-label="pt-information">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Information view - contextual articles</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+<div class="image-slot" data-label="pt-compare">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Cross-cycle comparison toggle</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+</div>
+</div>
+<div class="content-section" id="pt-study">
+  <p class="section-label">Usability Study</p>
+  <p>A usability study was conducted remotely with five participants, three with prior tracking experience and two without. Participants completed five predefined tasks using think-aloud protocol, rated helpfulness per task on a seven-point scale, and completed a short exit interview. No personal health data was collected.</p>
+<div class="image-slot" data-label="pt-results">
+  <input type="file" accept="image/*" onchange="handleImage(this)">
+  <div class="image-slot-inner">
+    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+    <span class="image-slot-label">Task completion and results table</span>
+    <span class="image-slot-hint">Click to add image</span>
+  </div>
+  <img class="slot-preview" alt="">
+  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
+  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
+</div>
+<p>Four of five tasks had majority completion. Helpfulness ratings ranged between 6 and 7 across tasks.</p>
+</div>
+<div class="content-section" id="pt-findings">
+  <p class="section-label">Findings</p>
+  <p>Uncertainty windows worked. Every participant said they preferred a range to a fixed date and described it as more realistic.</p>
+<p>The explanatory content didn't land. Not one participant opened the 'how predictions work' link without being directed to it. The information was there; it just wasn't visible enough to find.</p>
+<p>The biggest finding was that participants defaulted to the calendar for everything, including tasks better handled in the analysis or symptoms tabs. They had spent years using apps where the calendar was the whole product, and that mental model didn't shift just because other views existed.</p>
+</div>
+<div class="content-section" id="pt-next">
+  <p class="section-label">Next Steps</p>
+  <p>Make the prediction explanation prominent rather than tucked away. Use higher-contrast colours for deviation alerts. Make 'learn more' links go to the specific explanation rather than a topic index. Replace cycle-day numbers with phase markers so cross-cycle comparison actually makes sense. Integrate contextual factors directly into deviation detection rather than leaving users to connect the dots themselves.</p>
+</div>
   </div>
 </div>
-
 <footer>
   <div class="footer-left">
     <p>Ananya Bhagwat - UCL Interaction Centre</p>
