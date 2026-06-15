@@ -110,8 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resize() {
     const wrap = canvas.parentElement;
-    W = canvas.width  = wrap.offsetWidth;
-    H = canvas.height = wrap.offsetHeight;
+    // offsetHeight may be 0 if nothing has rendered yet — fall back to hero height
+    const hero = wrap.querySelector('.hero');
+    const h = wrap.offsetHeight || (hero ? hero.offsetHeight : 400);
+    W = canvas.width  = wrap.offsetWidth  || window.innerWidth;
+    H = canvas.height = h;
   }
 
   function makeNodes(n) {
@@ -210,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   });
 
-  init();
-  draw();
+  // Small delay so the browser has finished laying out the hero before we measure it
+  setTimeout(() => { init(); draw(); }, 80);
 
 });
