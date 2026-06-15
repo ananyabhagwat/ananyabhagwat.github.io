@@ -126,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function makeNodes(n) {
     return Array.from({ length: n }, (_, i) => ({
-      x:  Math.random() * W,
+      x:  W * 0.35 + Math.random() * W * 0.65,
       y:  Math.random() * H,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
-      r:  Math.random() * 4 + 3,          // bigger, visible circles
-      color: PALETTE[i % PALETTE.length], // each node gets a palette colour
+      r:  Math.random() * 4 + 3,
+      color: PALETTE[i % PALETTE.length],
     }));
   }
 
@@ -140,18 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
     nodes = makeNodes(48);
   }
 
-  // Fade out as distance from top-left increases
-  function cornerFade(x, y) {
+ function cornerFade(x, y) {
     const diag = Math.sqrt(W * W + H * H);
-    const dist = Math.sqrt(x * x + y * y);
+    const dist = Math.sqrt((W - x) * (W - x) + y * y);
     const frac = dist / diag;
     if (frac < 0.25) return 1;
     if (frac > 0.72) return 0;
     return 1 - (frac - 0.25) / (0.72 - 0.25);
   }
 
-  const MAX_DIST  = 220;   // longer edges
-  const GLOBAL_OPACITY = 0.22; // overall watermark level — tweak this one number
+  const MAX_DIST  = 300;   // longer edges
+  const GLOBAL_OPACITY = 0.40; // overall watermark level — tweak this one number
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
