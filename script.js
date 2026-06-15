@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const MAX_DIST = 160;
-  const BASE_ALPHA = 0.13; // max alpha for nodes/edges
+  const BASE_ALPHA = 0.35; // max alpha for nodes/edges
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
