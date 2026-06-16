@@ -97,36 +97,29 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(s => obs.observe(s));
   }
 
-  // ── Animated node/edge graph (home page only) ────────────────────────────
+// ── Animated node/edge graph (home page only) ────────────────────────────
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   let W, H, nodes, animFrame;
 
-  // Rainbow palette — crisp solid colours, applied at low global opacity
   const PALETTE = [
-    '#E05A6B', // rose
-    '#E8874A', // orange
-    '#D4B84A', // amber
-    '#6BAE5E', // green
-    '#4A9EBD', // sky
-    '#6B70C4', // indigo
-    '#A66BC4', // violet
-    '#C46B9E', // pink
+    '#E05A6B','#E8874A','#D4B84A','#6BAE5E',
+    '#4A9EBD','#6B70C4','#A66BC4','#C46B9E',
   ];
 
   function resize() {
     const wrap = canvas.parentElement;
     const hero = wrap.querySelector('.hero');
     const h = wrap.offsetHeight || (hero ? hero.offsetHeight : 400);
-    W = canvas.width  = wrap.offsetWidth  || window.innerWidth;
+    W = canvas.width  = wrap.offsetWidth || window.innerWidth;
     H = canvas.height = h;
   }
 
   function makeNodes(n) {
     return Array.from({ length: n }, (_, i) => ({
-      x:  W * 0.35 + Math.random() * W * 0.65,
+      x:  W * 0.5 + Math.random() * W * 0.5,
       y:  Math.random() * H,
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
@@ -140,33 +133,30 @@ document.addEventListener('DOMContentLoaded', () => {
     nodes = makeNodes(48);
   }
 
- function cornerFade(x, y) {
-    const diag = Math.sqrt(W * W + H * H);
-    const dist = Math.sqrt((W - x) * (W - x) + y * y);
-    const frac = dist / diag;
-    if (frac < 0.25) return 1;
-    if (frac > 0.72) return 0;
-    return 1 - (frac - 0.25) / (0.72 - 0.25);
+  function cornerFade(x, y) {
+    // fade from right side — full opacity on right, fades toward left
+    const frac = x / W;
+    if (frac > 0.75) return 1;
+    if (frac < 0.30) return 0;
+    return (frac - 0.30) / (0.75 - 0.30);
   }
 
-  const MAX_DIST  = 300;   // longer edges
-  const GLOBAL_OPACITY = 0.40; // overall watermark level — tweak this one number
+  const MAX_DIST = 220;
+  const GLOBAL_OPACITY = 0.22;
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // move nodes
     nodes.forEach(n => {
       n.x += n.vx;
       n.y += n.vy;
-      if (n.x < W * 0.38 || n.x > W - 5) n.vx *= -1;
-      if (n.y < 5 || n.y > H - 5) n.vy *= -1;
-      // keep nodes in bounds if they somehow escape
-      if (n.x < W * 0.38) n.x = W * 0.38 + 5;
-      if (n.x > W) n.x = W - 5;
+      if (n.x < W * 0.4) { n.vx = Math.abs(n.vx); n.x = W * 0.4; }
+      if (n.x > W)        { n.vx = -Math.abs(n.vx); n.x = W; }
+      if (n.y < 0)        { n.vy = Math.abs(n.vy);  n.y = 0; }
+      if (n.y > H)        { n.vy = -Math.abs(n.vy); n.y = H; }
     });
 
-    // draw edges first (underneath nodes)
+    // edges
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i], b = nodes[j];
@@ -177,34 +167,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const fade = cornerFade((a.x + b.x) / 2, (a.y + b.y) / 2);
         if (fade === 0) continue;
 
-        // Edge opacity falls off with distance — closer = more visible
         const proximity = 1 - dist / MAX_DIST;
         const alpha = GLOBAL_OPACITY * proximity * fade * 0.6;
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = `rgba(160,152,144,${alpha})`; // neutral warm grey
+        ctx.strokeStyle = `rgba(160,152,144,${alpha})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
     }
 
-    // draw nodes on top — solid fill, crisp circles
+    // nodes
     nodes.forEach(n => {
       const fade = cornerFade(n.x, n.y);
       if (fade === 0) return;
-
-      // Parse hex to rgb for alpha control
       const hex = n.color.replace('#','');
       const r = parseInt(hex.slice(0,2),16);
       const g = parseInt(hex.slice(2,4),16);
       const b = parseInt(hex.slice(4,6),16);
-      const alpha = GLOBAL_OPACITY * fade;
-
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      ctx.fillStyle = `rgba(${r},${g},${b},${GLOBAL_OPACITY * fade})`;
       ctx.fill();
     });
 
@@ -217,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   });
 
-  // Small delay so the browser has finished laying out the hero before we measure it
   setTimeout(() => { init(); draw(); }, 80);
 
 });
