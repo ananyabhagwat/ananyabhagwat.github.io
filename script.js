@@ -159,9 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
     nodes.forEach(n => {
       n.x += n.vx;
       n.y += n.vy;
-      if (n.x < W * 0.35 || n.x > W) n.vx *= -1;
-      if (n.y < 0 || n.y > H) n.vy *= -1;
-    });
+      if (n.x < W * 0.38 || n.x > W - 5) n.vx *= -1;
+      if (n.y < 5 || n.y > H - 5) n.vy *= -1;
+      // keep nodes in bounds if they somehow escape
+      if (n.x < W * 0.38) n.x = W * 0.38 + 5;
+      if (n.x > W) n.x = W - 5;
     });
 
     // draw edges first (underneath nodes)
