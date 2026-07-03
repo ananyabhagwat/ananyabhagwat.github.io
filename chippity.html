@@ -8,8 +8,45 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  .quote-block {
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin: 24px 0;
+    background: var(--surface);
+    border-radius: 0 6px 6px 0;
+  }
+  .quote-block p { font-size: 14px; color: var(--ink); margin-bottom: 6px; font-style: italic; }
+  .quote-block p:last-child { font-size: 12px; color: var(--muted); font-style: normal; margin-bottom: 0; }
+
+  .theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+  .theme-card { background: var(--surface); border-radius: 6px; padding: 16px; border-left: 3px solid var(--accent); }
+  .theme-card h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .theme-card p { font-size: 13px; line-height: 1.6; color: var(--ink); margin-bottom: 0; }
+
+  .design-decision { margin: 16px 0; padding: 16px 20px; background: var(--surface); border-radius: 6px; }
+  .design-decision h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .design-decision p { font-size: 13.5px; line-height: 1.65; color: var(--ink); margin-bottom: 0; }
+
+  .eval-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; align-items: start; }
+  .eval-row img { width: 100%; height: auto; border-radius: 6px; display: block; }
+  .eval-findings { display: flex; flex-direction: column; gap: 10px; }
+  .finding-item { font-size: 13.5px; line-height: 1.6; color: var(--ink); padding-left: 16px; position: relative; }
+  .finding-item::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+  .full-img { width: 100%; height: auto; border-radius: 6px; display: block; margin: 24px 0; }
+  .full-img-wide { width: calc(100% + 32px); margin-left: -32px; height: auto; border-radius: 6px; display: block; margin-top: 24px; margin-bottom: 24px; }
+  .img-caption { font-size: 11px; color: var(--muted); margin-top: -16px; margin-bottom: 24px; line-height: 1.5; }
+
+  @media (max-width: 768px) {
+    .theme-grid { grid-template-columns: 1fr; }
+    .eval-row { grid-template-columns: 1fr; }
+    .full-img-wide { width: 100%; margin-left: 0; }
+  }
+</style>
 </head>
 <body style="--accent: var(--c1)">
+
 <nav>
   <a class="nav-name" href="index.html">Ananya Bhagwat</a>
   <div class="nav-right">
@@ -19,185 +56,188 @@
     </a>
   </div>
 </nav>
+
 <div class="project-header">
   <div class="project-header-left">
     <p class="project-eyebrow">Interaction Design / Group Project</p>
     <h1>Chippity: Reflective LLM Use in Higher Education</h1>
-    <p class="lede">A browser extension that makes the hidden costs of ChatGPT use visible — cognitive and environmental — without getting in the way of why students use it.</p>
+    <p class="lede">A browser extension and companion mobile app that makes the hidden costs of ChatGPT use visible at the moment of interaction - without restricting how students use it.</p>
   </div>
   <div class="project-meta">
     <div class="meta-item">
-  <span class="meta-label">Course</span>
-  <span class="meta-value">Interaction Design</span>
-</div>
-<div class="meta-item">
-  <span class="meta-label">Methods</span>
-  <span class="meta-value">Semi-structured interviews, Thematic analysis, Prototyping, User evaluation</span>
-</div>
-<div class="meta-item">
-  <span class="meta-label">Team</span>
-  <span class="meta-value">5 people</span>
-</div>
+      <span class="meta-label">Course</span>
+      <span class="meta-value">Interaction Design</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Methods</span>
+      <span class="meta-value">Semi-structured interviews, Reflexive thematic analysis, Crazy 8s, Lo-fi and hi-fi prototyping, Two rounds of user evaluation</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Team</span>
+      <span class="meta-value">5 people</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Output</span>
+      <span class="meta-value">CHI-format paper, 5384 words</span>
+    </div>
   </div>
 </div>
+
 <div class="project-body">
   <aside class="project-sidebar">
     <ul class="sidebar-nav">
       <li><a href="#c-overview">Overview</a></li>
-<li><a href="#c-research">Research</a></li>
-<li><a href="#c-process">Design Process</a></li>
-<li><a href="#c-lofi">Low-fi Prototype</a></li>
-<li><a href="#c-hifi">High-fi Prototype</a></li>
-<li><a href="#c-outcomes">Outcomes</a></li>
+      <li><a href="#c-research">Research</a></li>
+      <li><a href="#c-insights">Insights</a></li>
+      <li><a href="#c-ideation">Ideation</a></li>
+      <li><a href="#c-lofi">Low-fi Prototype</a></li>
+      <li><a href="#c-eval1">First Evaluation</a></li>
+      <li><a href="#c-hifi">High-fi Prototype</a></li>
+      <li><a href="#c-eval2">Second Evaluation</a></li>
+      <li><a href="#c-outcomes">Outcomes</a></li>
     </ul>
   </aside>
+
   <div class="project-content">
+
     <div class="content-section" id="c-overview">
-  <p class="section-label">Overview</p>
-  <p>LLM use in higher education is growing fast, and the interfaces students use offer no support for thinking critically about that use. Every prompt draws on energy-intensive infrastructure, and sustained reliance on LLM output reorganises how students think, weakening the conditions for independent reasoning. Students are aware of both. They still don't change their behaviour. Chippity is a browser extension with a companion mobile app designed to address that gap, not by restricting use, but by making its costs visible and actionable at the point of interaction.</p>
-<p>The research question driving the project was whether cognitive dependence and environmental impact could be made perceptible within existing LLM workflows, without undermining the convenience that makes students use them in the first place.</p>
-</div>
-<div class="content-section" id="c-research">
-  <p class="section-label">Research</p>
-  <p>The design process began with 15 semi-structured interviews with regular LLM users. Reflexive thematic analysis produced four themes: convenience normalises patterned reliance, students have genuine concerns about losing cognitive agency, environmental impact is invisible and weakly motivating, and there is a persistent gap between intention and behaviour.</p>
-<div class="image-slot" data-label="c-interview">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Interview setup or notes</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-<p>Students could articulate what they should do differently. Nothing in the interface gave them a moment to act on it.</p>
-<div class="image-slot wide" data-label="c-affinity">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Affinity wall / thematic analysis</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-</div>
-<div class="content-section" id="c-process">
-  <p class="section-label">Design Process</p>
-  <p>Those findings shaped the requirements directly. Any intervention had to work within the moment of prompting, had to preserve students' sense of control, and had to fit into existing study routines without adding friction. A Crazy 8s workshop generated directions including wearables, standalone GPT interfaces, and goal-setting dashboards.</p>
-<div class="image-slot" data-label="c-crazy8s">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Crazy 8s workshop sketches</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-<p>The screening criterion was simple: does this require leaving ChatGPT? Anything that did was discarded. A browser extension was the only option that kept reflection inside the interface students already use.</p>
-<div class="image-slot" data-label="c-personas">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Personas</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-</div>
-<div class="content-section" id="c-lofi">
-  <p class="section-label">Low-fi Prototype and First Evaluation</p>
-  <p>The low-fidelity prototype included pre-set profiles, a settings page, 15 pop-up nudge variants tested across different screen positions, personal usage statistics, and community features.</p>
-<div class="image-row">
-<div class="image-slot" data-label="c-lofi-screens">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Lo-fi prototype screens</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-<div class="image-slot" data-label="c-ratings">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Pop-up ratings table</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-</div>
-<p>Testing with 5 participants revealed that tone mattered more than content. Nudges that felt prescriptive or moralising were dismissed. Nudges framed as invitations to reflect were rated consistently helpful. All participants placed the system closer to helpful than intrusive.</p>
-</div>
-<div class="content-section" id="c-hifi">
-  <p class="section-label">High-fi Prototype and Second Evaluation</p>
-  <p>The high-fidelity prototype introduced four profiles (Eco Mode, Think Mode, Smart Balance, Custom), 18 refined prompts, a mascot for personal engagement, and a community dashboard showing cohort-level usage.</p>
-<div class="image-slot wide" data-label="c-hifi-setup">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Extension set-up flow</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-<p>A second round of in-person testing with 4 participants produced further refinements to font size, button logic, settings clarity, and hover descriptions.</p>
-<div class="image-row">
-<div class="image-slot" data-label="c-hifi-nudge">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Nudge on ChatGPT interface</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-<div class="image-slot" data-label="c-hifi-community">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Community dashboard</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-</div>
-<div class="image-slot" data-label="c-hifi-settings">
-  <input type="file" accept="image/*" onchange="handleImage(this)">
-  <div class="image-slot-inner">
-    <div class="image-slot-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-    <span class="image-slot-label">Profile settings / hover descriptions</span>
-    <span class="image-slot-hint">Click to add image</span>
-  </div>
-  <img class="slot-preview" alt="">
-  <textarea class="image-caption" rows="1" placeholder="Add a caption..."></textarea>
-  <button class="image-slot-remove" onclick="removeImage(this)">Remove</button>
-</div>
-</div>
-<div class="content-section" id="c-outcomes">
-  <p class="section-label">Outcomes</p>
-  <p>The final system demonstrates that reflective scaffolding can be embedded within existing LLM workflows without sacrificing convenience. The community feature produced the strongest response across both evaluations. Knowing peers were attempting similar goals made individual effort feel worth sustaining.</p>
-<p>The project produced three contributions: a qualitative account of how students experience cognitive offloading and environmental invisibility, a working system introducing a reflective layer over existing LLM interfaces, and a set of design principles for responsible LLM use in higher education.</p>
-</div>
+      <p class="section-label">Overview</p>
+      <p>88% of UK undergraduates use LLMs regularly. The problem is not that they use them - it is that nothing in the interface asks them to think about what that use costs. Every prompt draws on energy-intensive data-centre infrastructure. Sustained reliance reorganises how students think, weakening the conditions for independent reasoning. Students are aware of both. They still don't change their behaviour.</p>
+      <p>Chippity addresses that gap. Rather than restricting use or lecturing students, it embeds lightweight reflective nudges and usage visualisation directly into ChatGPT, making cognitive and environmental consequences perceptible at the point of interaction, and letting students define their own goals for change.</p>
+      <img src="Design_process.png" alt="Chippity design process flowchart" class="full-img">
+      <p class="img-caption">The design process: from exploratory interviews through two rounds of prototyping and evaluation to a final hi-fi system.</p>
+    </div>
+
+    <div class="content-section" id="c-research">
+      <p class="section-label">Research</p>
+      <p>We conducted 15 semi-structured interviews with regular LLM users (ages 21-23, 14 primarily using ChatGPT), lasting 25-35 minutes each. Participants described their prompting routines, motivations, frustrations, and any awareness of cognitive or environmental consequences. All interviews were transcribed verbatim and analysed using reflexive thematic analysis - codes were clustered iteratively into themes through a series of affinity mapping sessions.</p>
+      <img src="affinity_mapping.jpg" alt="Affinity mapping with sticky notes on a whiteboard" class="full-img-wide">
+      <p class="img-caption">Affinity mapping - codes clustered and refined into four themes that directly shaped the design requirements.</p>
+    </div>
+
+    <div class="content-section" id="c-insights">
+      <p class="section-label">Insights</p>
+      <p>Four themes emerged, all pointing to the same core problem: students know what they should do differently, but nothing in their environment creates a moment to act on it.</p>
+
+      <div class="theme-grid">
+        <div class="theme-card">
+          <h4>Convenience normalises reliance</h4>
+          <p>LLMs are the most convenient tool available. That convenience becomes habit, sometimes unwanted. "The cost of convenience is the degradation of something else." (P4)</p>
+        </div>
+        <div class="theme-card">
+          <h4>Concerns about cognitive agency</h4>
+          <p>Students worry reliance erodes critical thinking and authorship. "I want to get back to the point where I don't need to use ChatGPT anymore." (P1)</p>
+        </div>
+        <div class="theme-card">
+          <h4>Environmental impact is invisible</h4>
+          <p>Most students had vague, second-hand awareness. Even sustainability-minded participants said the topic "goes over my head." It felt abstract and distant from daily choices.</p>
+        </div>
+        <div class="theme-card">
+          <h4>Intention does not become action</h4>
+          <p>Students recognise the problem but rarely change behaviour. "Why do I know what I should do but keep doing what I shouldn't?" (P4)</p>
+        </div>
+      </div>
+
+      <p>These themes produced five design requirements: bridge awareness and behaviour at the point of prompting; preserve autonomy; avoid discouraging legitimate use; make costs perceptible in context; and integrate into existing routines without friction.</p>
+
+      <img src="persona.jpg" alt="Handwritten personas for Sophie and Brian" class="full-img">
+      <p class="img-caption">Two personas synthesising distinct motivational profiles - one concerned primarily with cognitive overreliance, one with environmental impact. These anchored every subsequent design decision.</p>
+    </div>
+
+    <div class="content-section" id="c-ideation">
+      <p class="section-label">Ideation</p>
+      <p>We used Crazy 8s in a design workshop to generate solution directions quickly: wearables, screen pets, usage visualisations, goal-setting dashboards, and standalone reflective GPT interfaces all came up. Every concept was evaluated against one key criterion: does it require leaving ChatGPT?</p>
+      <p>Anything that did was discarded. The interviews had made clear that students adopted LLMs precisely because of low friction. An intervention that broke that flow would be ignored. A browser extension was the only option that kept reflection inside the interface students already use. The solution that emerged combined three mechanisms: self-defined usage goals, live tracking and visualisation, and in-context nudges delivered at the moment of prompting.</p>
+    </div>
+
+    <div class="content-section" id="c-lofi">
+      <p class="section-label">Low-fi Prototype</p>
+      <p>The prototype was hand-drawn then converted to a digital walkthrough for remote testing. It covered the full intended system: onboarding and profile selection, settings, 15 pop-up nudge variants in different screen positions, a personal statistics page, community creation and dashboard, and a companion mobile app with notification examples.</p>
+
+      <img src="low_fidelity_prototypes.png" alt="Lo-fi wireframes for browser extension and mobile app" class="full-img-wide">
+      <p class="img-caption">Lo-fi prototype screens: browser extension wireframes (top row) and companion mobile app in three states - sign-in, time limit reached, and approaching limit (bottom row).</p>
+
+      <p>Four design decisions were embedded at this stage, each grounded in the research:</p>
+
+      <div class="design-decision">
+        <h4>Pre-set profiles</h4>
+        <p>Students differed in what they wanted to address. Rather than asking everyone to configure from scratch, pre-set profiles (Eco Mode, Think Mode, Smart Balance, Custom) reduce onboarding friction while maintaining personal relevance.</p>
+      </div>
+      <div class="design-decision">
+        <h4>User-defined goals</h4>
+        <p>Participants consistently disliked being told what to do. Drawing on Self-Determination Theory, Chippity lets users set their own limits. When change feels self-endorsed rather than imposed, adherence is higher and dropout lower.</p>
+      </div>
+      <div class="design-decision">
+        <h4>Reflective, non-prescriptive tone</h4>
+        <p>Nudges invite consideration rather than enforce behaviour. Tone was treated as a first-order design decision - messages that felt moralising were discarded, messages that felt like a quiet reminder were kept.</p>
+      </div>
+      <div class="design-decision">
+        <h4>Communities feature</h4>
+        <p>Participants often compared their usage to peers. Knowing others were trying made individual effort feel worth it. The communities feature lets students observe collective progress without direct comparison.</p>
+      </div>
+    </div>
+
+    <div class="content-section" id="c-eval1">
+      <p class="section-label">First Evaluation</p>
+      <p>Remote think-aloud with 5 participants via Microsoft Teams. Each participant walked through the prototype and rated all 15 nudges on quality (1-5 scale), then placed the overall system on a helpful-to-intrusive scale with qualitative reasoning.</p>
+
+      <div class="eval-row">
+        <img src="prompts_ratings_data.png" alt="Table of participant ratings for 15 pop-up prompts across 5 participants">
+        <div class="eval-findings">
+          <p style="font-size:12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;">Key findings</p>
+          <div class="finding-item">All 5 participants rated the system as helpful rather than intrusive</div>
+          <div class="finding-item">The non-prescriptive tone was specifically cited as the reason</div>
+          <div class="finding-item">Bottom-right nudge placement felt least disruptive</div>
+          <div class="finding-item">Profile selection needed clearer implications</div>
+          <div class="finding-item">Community feature identified as the strongest engagement driver</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" id="c-hifi">
+      <p class="section-label">High-fi Prototype</p>
+      <p>Evaluation feedback drove a systematic revision. Profile descriptions were expanded. A mascot was introduced to make the interaction feel personal. The nudge set was refined from 15 to 18, with wording adjusted based on rating data. All nudges were standardised to the bottom-right corner.</p>
+
+      <img src="hi-fi_1.png" alt="Four hi-fi screens showing Chrome Web Store listing, sign-up, profile selection, and settings" class="full-img-wide">
+      <p class="img-caption">Set-up flow: Chrome Web Store listing, sign-up, profile selection, and detailed profile settings with advanced options.</p>
+
+      <img src="hifi_1.png" alt="Chippity nudge appearing in bottom-right of ChatGPT interface" class="full-img">
+      <p class="img-caption">A nudge appearing bottom-right while a student is mid-conversation on ChatGPT - positioned to be visible without interrupting the main task area.</p>
+
+      <img src="hifi_3.png" alt="Usage stats, community creation, community dashboard and profile settings screens" class="full-img-wide">
+      <p class="img-caption">The full system: personal usage and environmental impact stats, community creation and joining flow, community dashboard, and refined profile settings.</p>
+
+      <img src="dashboard.png" alt="Community dashboard for Team UCL" class="full-img">
+      <p class="img-caption">Community dashboard showing cohort usage, goal attainment rates, and prompt optimisation. Members see collective progress - motivating without ranking individuals.</p>
+
+      <p>Six examples from the final set of 18 nudges, covering eco-limits, screen time warnings, community comparisons, flagged topics, prompt limits, and focus tips:</p>
+
+      <img src="hifi_prompts_4.png" alt="Six final nudge examples from the hi-fi prototype" class="full-img-wide">
+      <p class="img-caption">Each nudge is phrased as an invitation, not an instruction. Tone and wording were directly informed by the rating data from evaluation 1.</p>
+
+      <p>The settings page was redesigned to include hover descriptions on every control, added in direct response to feedback that profile implications were unclear.</p>
+
+      <img src="personalized_ai_rec.png" alt="Profile settings hover description on personalised AI recommendations toggle" class="full-img">
+      <p class="img-caption">Hover description on the Personalised AI Recommendations toggle - one of several contextual explanations added after evaluation 1 flagged that settings lacked clarity.</p>
+    </div>
+
+    <div class="content-section" id="c-eval2">
+      <p class="section-label">Second Evaluation</p>
+      <p>A second round of in-person testing with 4 participants used task-based think-aloud rather than a slideshow walkthrough. Participants completed specific tasks through the prototype and flagged points of confusion in the user flow.</p>
+      <p>Changes implemented: font size increased on profile settings, information inconsistencies across screens corrected, buttons relinked to match intuitive navigation, scroll bar moved to the right side of the community members panel, and hover descriptions added to all settings.</p>
+      <p>Participants also suggested features outside the project timeline: an information page, daily or weekly goal achievements, and the ability to join multiple communities. These are noted as directions for future work.</p>
+    </div>
+
+    <div class="content-section" id="c-outcomes">
+      <p class="section-label">Outcomes</p>
+      <p>Chippity demonstrates that reflective scaffolding can live inside existing tools without sacrificing the convenience that drives adoption. The community feature produced the strongest response across both evaluation rounds - knowing peers were trying made individual effort feel worthwhile.</p>
+      <p>The project contributes three things: a qualitative account of how cognitive offloading and environmental invisibility operate in everyday student LLM use; a working system that introduces a reflective layer without restricting access; and a set of design principles - preserve control, make consequences perceptible at the moment they are produced, and support self-regulation rather than enforcing compliance.</p>
+      <p>Limitations are real and worth naming. Single-session evaluations cannot replicate habitual use. Environmental feedback used estimates rather than real telemetry, since LLM providers do not expose per-query energy data. Mobile nudges were time-based rather than prompt-aligned due to OS restrictions. These constraints bound the claims the study can make and point clearly to the work that remains.</p>
+    </div>
+
   </div>
 </div>
+
 <footer>
   <div class="footer-left">
     <p>Ananya Bhagwat - UCL Interaction Centre</p>
